@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hjm.mapper.UserMapper">
+
+    <select id="getUsers" resultType="com.hjm.bean.User">
+        select * from user
+    </select>
+
+    <insert id="register" parameterType="com.hjm.bean.User">
+      insert into user values(null , #{username} , #{password})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+      delete from user where id = #{id}
+    </delete>
+
+    <select id="queryUserById" parameterType="int" resultType="com.hjm.bean.User">
+        select * from user where id = #{id}
+    </select>
+    <update id="updateUser" parameterType="com.hjm.bean.User">
+        update user set username = #{username} , password = #{password} where id = #{id}
+    </update>
+</mapper>

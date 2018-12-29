@@ -1,0 +1,22 @@
+
+# Spring 基本配置
+spring:
+
+  #thmeleaf 模版
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+
+  # 数据源
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/boot?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+
+# Mybatis 基本配置
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml

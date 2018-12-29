@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Default_Echarts</title>
+    <script type="application/javascript" th:src="@{js/echarts.min.js}"></script>
+    <script type="application/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+</head>
+<body>
+    <!-- 为Echarts准备一个具体大小的div -->
+    <div id="main" style="width: 400px;height: 600px;" ></div>
+
+    <script type="text/javascript">
+
+        // 给予准备好的div实例化Echarts
+        var myChart = echarts.init(document.getElementById("main"))
+
+        // 指定图标的配置项和数据
+
+        var option = {
+
+            title:{
+                text:"Echarts入门"
+            },
+            tooltip:{},
+            legend:{
+                data:['销量']
+            },
+            xAxis:{
+                data:['苹果','三星','华为','小米']
+            },
+            yAxis:{},
+            series:[{
+                name:'销量',
+                type:'bar',
+                data:[659,200,540,544]
+            }]
+        };
+
+        // 使用指定的配置项和数据显示图表
+        myChart.setOption(option)
+
+    </script>
+
+</body>
+</html>

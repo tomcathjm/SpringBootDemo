@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax_Echarts</title>
+    <script type="application/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script type="application/javascript" th:src="@{js/echarts.min.js}"></script>
+</head>
+<body>
+    <!-- 为Echarts准备一个具体大小的Dom -->
+    <div id="main" style="width: 800px;height: 500px;"></div>
+
+    <script type="text/javascript">
+
+            // 基于准备好的dom，初始化Echarts实例
+            var myEcharts = echarts.init(document.getElementById("main"))
+
+            // 显示加载动画
+            myEcharts.showLoading()
+
+            var names = []   // 横坐标数组---用来存放 X 轴坐标数据
+            var values = []  // 纵坐标数组---用来存放 Y 轴坐标数据
+
+            $.ajax({
+                type: "post",
+                async: true,
+                url: "/e3",
+                data: {},
+                dataType: "json",
+                success: function (result) {
+
+                    // 请求成功之后的回调函数，result即为服务器返回的json对象
+
+                    if (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            names.push(result[i].username)
+                            values.push(result[i].salary)
+                        }
+
+                        myEcharts.hideLoading() // 隐藏加载动画
+                        myEcharts.setOption({   // 设置数据
+                            title:{
+                                text:'这是标题'
+                            },
+                            tooltip: {},
+                            legend: {
+                                data: ['薪资']
+                            },
+                            xAxis: {
+                                data: names
+                            },
+                            yAxis: {
+                                type: 'value'
+                            },
+                            series: [{
+                                name: '薪资',
+                                type: 'line',// bar：柱状图  line：折线图
+                                data: values
+                            }]
+                        })
+                    }
+                },
+                error: function (errorMsg) {   // 请求失败时执行该函数
+
+                    alert("图表数据请求失败，请重试")
+                    myEcharts.hideLoading()
+
+                }
+            }) // Ajax end
+    </script>
+
+
+
+</body>
+</html>
