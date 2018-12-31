@@ -52,4 +52,9 @@ public class EChartController {
         return beans;
     }
 
+    // 测试
+    public void show(){
+
+    }
+
 }
