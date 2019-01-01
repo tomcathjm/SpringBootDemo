@@ -1,6 +1,8 @@
 package com.hjm.bean;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     int id;
     String username;
     String password;
