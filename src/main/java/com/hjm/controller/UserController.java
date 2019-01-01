@@ -20,6 +20,7 @@ public class UserController {
 
         List<User> users = userService.getUsers();
         model.addAttribute("users",users);
+        model.addAttribute("title","首页");
 
         return "/homepage";
 
